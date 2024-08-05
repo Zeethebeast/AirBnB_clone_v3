@@ -20,5 +20,8 @@ def status():
 
 @app_views.route('/api/v1/stats', methods=['GET'], strict_slashes=False)
 def count():
+    """
+    Retrieve the number of each object by type.
+    """
     counts = storage.count()
     return jsonify(counts)

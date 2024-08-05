@@ -32,3 +32,10 @@ def not_found(error):
     Handle 404 errors by returning a JSON response with a 404 status code.
     """
     return make_response(jsonify({'error': 'Not found'}), 404)
+=======
+
+@app_views.route('/status', methods=['GET'])
+def status():
+    """Returns the status of the API"""
+    return jsonify({"status": "OK"})
+>>>>>>> fa1984c0b5b4007426b8a15abed3828244cafabc

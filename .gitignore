@@ -1,0 +1,16 @@
+__pycache__/
+
+# Emacs temporary files
+*~
+\#*\#
+.#*
+.emacs.desktop
+.emacs.desktop.lock
+.emacs-places
+.emacs-buffers
+
+# Vim temporary files
+*.swp
+*.swo
+.*.swp
+.*.swo

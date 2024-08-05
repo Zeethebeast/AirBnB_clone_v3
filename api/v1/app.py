@@ -1,6 +1,18 @@
 #!/usr/bin/python3
-# api/v1/app.py
+"""
+Module: app
 
+Description:
+    This module sets up and configures a Flask application instance with
+    various endpoints.
+
+Functions:
+    teardown_db() -> None
+        Deletes the current database session and creates a new one.
+
+Notes:
+    For more information about the routes, see the /api/v1/views/ directory.
+"""
 from flask import Flask
 from models import storage
 from api.v1.views import app_views

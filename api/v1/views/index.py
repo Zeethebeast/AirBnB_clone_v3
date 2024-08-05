@@ -5,9 +5,8 @@
 This module defines the view for the API status endpoint.
 """
 
+from flask import jsonify, make_response
 from api.v1.views import app_views
-from flask import jsonify
-from flask import make_response
 from models import storage
 
 @app_views.route('/status', methods=['GET'], strict_slashes=False)
@@ -29,4 +28,7 @@ def count():
 
 @app_views.errorhandler(404)
 def not_found(error):
+    """
+    Handle 404 errors by returning a JSON response with a 404 status code.
+    """
     return make_response(jsonify({'error': 'Not found'}), 404)

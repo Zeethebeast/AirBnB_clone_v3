@@ -1,17 +1,29 @@
 #!/usr/bin/python3
-# api/v1/app.py
+"""
+Module: app
 
 """
 This module sets up the Flask application for the API.
 It registers the blueprint and handles teardown of the database session.
 """
 
+Description:
+    This module sets up and configures a Flask application instance with
+    various endpoints.
+
+Functions:
+    teardown_db() -> None
+        Deletes the current database session and creates a new one.
+
+Notes:
+    For more information about the routes, see the /api/v1/views/ directory.
+"""
 from flask import Flask
-from models import storage
 from api.v1.views import app_views
-import os
+from os import getenv
 
 app = Flask(__name__)
+app.url_map.strict_slashes = False
 app.register_blueprint(app_views)
 
 
@@ -31,3 +43,15 @@ if __name__ == "__main__":
     app.run(host=host, port=port, threaded=True)
 
     
+    """Close the storage on teardown"""
+    app.config['STORAGE'].close()
+
+
+if __name__ == "__main__":
+    from models import storage
+
+    app.config['STORAGE'] = storage
+    host = getenv('HBNB_API_HOST', '0.0.0.0')
+    port = int(getenv('HBNB_API_PORT', 5000))
+
+    app.run(host=host, port=port, threaded=True, debug=True)

@@ -9,6 +9,7 @@ Description:
 
 Endpoints:
     '/status' - Returns the status of the API
+    '/stats' - Returns the number of objects of each mapped classes
 """
 from api.v1.views import app_views
 from flask import jsonify
@@ -22,7 +23,7 @@ def get_status():
 
 @app_views.route('/stats', methods=['GET'])
 def get_stats():
-    """Counts and returns the number of objects of the mapped classs"""
+    """Counts and returns the number of objects of each the mapped classes"""
     from api import classes
     from models import storage
 

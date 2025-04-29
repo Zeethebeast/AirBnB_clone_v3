@@ -2,6 +2,11 @@
 """
 Module: app
 
+"""
+This module sets up the Flask application for the API.
+It registers the blueprint and handles teardown of the database session.
+"""
+
 Description:
     This module sets up and configures a Flask application instance with
     various endpoints.
@@ -24,6 +29,20 @@ app.register_blueprint(app_views)
 
 @app.teardown_appcontext
 def teardown_db(exception):
+    """
+    Closes the storage on teardown.
+    This function is called when the request context is popped, 
+    which means the function is executed when the application context ends.
+    """
+    storage.close()
+
+
+if __name__ == "__main__":
+    host = os.getenv('HBNB_API_HOST', '0.0.0.0')
+    port = int(os.getenv('HBNB_API_PORT', 5000))
+    app.run(host=host, port=port, threaded=True)
+
+    
     """Close the storage on teardown"""
     app.config['STORAGE'].close()
 
